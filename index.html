@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Vending Machines - Asís PerSe</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #d4a574 0%, #c4956b 100%);
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #8b6f47 0%, #d4a574 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .section {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child {
+            border-bottom: none;
+        }
+        .section h2 {
+            color: #8b6f47;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #d4a574;
+            padding-bottom: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h3 {
+            color: #8b6f47;
+            margin-top: 0;
+            font-size: 1.3em;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #d4a574;
+            color: white;
+            font-weight: 600;
+        }
+        .alta { background: #e8f5e8; }
+        .media { background: #fff3cd; }
+        .baja { background: #f8d7da; }
+        .highlight {
+            background: linear-gradient(135deg, #d4a574, #c4956b);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        .highlight h3 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .highlight p {
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #d4a574;
+        }
+        .stat h4 {
+            margin: 0;
+            color: #d4a574;
+            font-size: 2em;
+        }
+        .stat p {
+            margin: 5px 0 0 0;
+            color: #666;
+        }
+        .footer {
+            background: #8b6f47;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        @media print {
+            body { background: white; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Propuesta de Vending Machines</h1>
+            <p>Asís PerSe - Solución Premium para Huéspedes Ejecutivos</p>
+        </div>
+
+        <div class="section">
+            <h2>Resumen Ejecutivo</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🎯 Oportunidad</h3>
+                    <p>Elevar la experiencia de huéspedes ejecutivos en Asís PerSe mediante amenities premium disponibles 24/7. Ofrecer productos de conveniencia y cuidado personal que complementen el servicio de hospitalidad de clase mundial y refuercen el estatus de Super Host de Airbnb.</p>
+                </div>
+                <div class="card">
+                    <h3>📊 Mercado</h3>
+                    <p>38 habitaciones con 80% ocupación = 45.6 personas diarias (1.5 personas promedio por habitación). Ejecutivos y turistas A/B+ que valoran conveniencia, calidad y seguridad en sus estadías.</p>
+                </div>
+                <div class="card">
+                    <h3>💰 Beneficios</h3>
+                    <p>Servicio diferenciado premium, amenities adicionales sin costo operativo, mayor satisfacción y lealtad de huéspedes, seguridad (no necesitan salir por productos esenciales), complemento perfecto al modelo de estancias cortas.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Catálogo de Productos</h2>
+            
+            <h3>Cuidado Personal & Amenities</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="alta">
+                        <td>Bálsamo labial premium</td>
+                        <td>$80</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Cepillo de dientes</td>
+                        <td>$45</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Pasta dental mini</td>
+                        <td>$65</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Desodorante sólido</td>
+                        <td>$95</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Toallitas húmedas</td>
+                        <td>$40</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Rastrillo desechable</td>
+                        <td>$70</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Kit higiene femenina</td>
+                        <td>$120</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Cera para peinar</td>
+                        <td>$110</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Toallas desmaquillantes</td>
+                        <td>$55</td>
+                        <td>Media</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Snacks Premium</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="alta">
+                        <td>Barras proteína</td>
+                        <td>$85</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Barras de quinoa</td>
+                        <td>$75</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Mix frutos secos premium</td>
+                        <td>$95</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Chips vegetales horneados</td>
+                        <td>$65</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Chocolate negro 70%</td>
+                        <td>$75</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Mango enchilado</td>
+                        <td>$60</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Choco obleas</td>
+                        <td>$50</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Crackers integrales</td>
+                        <td>$55</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Chips de kale</td>
+                        <td>$80</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Frutas deshidratadas gourmet</td>
+                        <td>$85</td>
+                        <td>Media</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Bebidas & Wellness</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Prioridad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="alta">
+                        <td>Agua premium 500ml</td>
+                        <td>$35</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Bebida energética</td>
+                        <td>$55</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Ibuprofeno (2 tabs)</td>
+                        <td>$25</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Antiácido</td>
+                        <td>$35</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="alta">
+                        <td>Cargador USB-C</td>
+                        <td>$180</td>
+                        <td>Alta</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Jugo natural</td>
+                        <td>$45</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Vitamina C</td>
+                        <td>$45</td>
+                        <td>Media</td>
+                    </tr>
+                    <tr class="media">
+                        <td>Electrolitos</td>
+                        <td>$55</td>
+                        <td>Media</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>Modelo de Negocio</h2>
+            
+            <div class="highlight">
+                <h3>Propuesta de Revenue Share</h3>
+                <p>8% de utilidad neta para PerSe Capital</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>📈 Proyección Financiera</h3>
+                    <div class="stats">
+                        <div class="stat">
+                            <h4>$55</h4>
+                            <p>Ticket promedio</p>
+                        </div>
+                        <div class="stat">
+                            <h4>50%</h4>
+                            <p>Margen uniforme</p>
+                        </div>
+                        <div class="stat">
+                            <h4>30%</h4>
+                            <p>Penetración objetivo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>💰 Ingresos Estimados para PerSe</h3>
+                    <table style="box-shadow: none;">
+                        <tr>
+                            <td><strong>Escenario Conservador (25%)</strong></td>
+                            <td>$592/mes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Escenario Base (30%)</strong></td>
+                            <td>$743/mes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Escenario Optimista (35%)</strong></td>
+                            <td>$893/mes</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>🎯 Responsabilidades</h3>
+                    <h4>Operador:</h4>
+                    <ul>
+                        <li>Inversión en máquina ($120,000)</li>
+                        <li>Inventario inicial ($25,000)</li>
+                        <li>Instalación/setup ($8,000)</li>
+                        <li>Mantenimiento y limpieza</li>
+                        <li>Gestión operativa diaria</li>
+                    </ul>
+                    <h4>PerSe Capital:</h4>
+                    <ul>
+                        <li>Espacio en lobby</li>
+                        <li>Energía eléctrica</li>
+                        <li>Acceso a red WiFi</li>
+                        <li>Promoción interna</li>
+                        <li>Facilitar acceso para restock</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📊 Métricas Clave</h3>
+                    <ul>
+                        <li><strong>45.6 personas diarias</strong> (38 habitaciones × 80% × 1.5 personas)</li>
+                        <li><strong>13.7 compradores diarios</strong> (30% penetración)</li>
+                        <li><strong>$22,572 ventas mensuales</strong></li>
+                        <li><strong>$9,286 utilidad mensual</strong></li>
+                        <li><strong>$743 para PerSe</strong> (8% utilidad neta)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Ventajas Competitivas</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🏆 Para los Huéspedes</h3>
+                    <ul>
+                        <li><strong>Conveniencia 24/7</strong> - Sin salir del edificio</li>
+                        <li><strong>Productos premium</strong> - Selección curada de calidad</li>
+                        <li><strong>Seguridad</strong> - No necesidad de salir por emergencias</li>
+                        <li><strong>Ticket promedio $55</strong> - Precios competitivos vs farmacia</li>
+                        <li><strong>Margen uniforme 50%</strong> - Simplicidad en pricing</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🏢 Para PerSe Capital</h3>
+                    <ul>
+                        <li><strong>$743/mes ingresos pasivos</strong> - Sin inversión inicial</li>
+                        <li><strong>Servicio diferenciado</strong> - Amenity exclusivo</li>
+                        <li><strong>Mayor satisfacción</strong> - Huéspedes más felices</li>
+                        <li><strong>Modelo sostenible</strong> - Operador profesional</li>
+                        <li><strong>Escalabilidad</strong> - Potencial segunda máquina</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🎯 Propuesta de Valor</h3>
+                    <ul>
+                        <li><strong>45.6 personas diarias</strong> - Base sólida de tráfico</li>
+                        <li><strong>30% penetración</strong> - Realista para ejecutivos</li>
+                        <li><strong>13.7 compradores diarios</strong> - Volumen constante</li>
+                        <li><strong>Productos premium</strong> - Selección curada</li>
+                        <li><strong>$153,000 inversión total</strong> - Operador especializado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Catálogo Visual</h2>
+            
+            <div class="card" style="text-align: center; margin-bottom: 30px;">
+                <h3>Vending Machine ESSENZA</h3>
+                <img id="vending-image" src="" alt="Vending Machine ESSENZA" style="max-width: 100%; height: auto; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2);">
+                <p style="color: #666; font-style: italic; margin-top: 10px;">*Imagen referencial</p>
+            </div>
+
+            <h3>Ejemplos de Productos Premium</h3>
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <h4>Snacks Saludables</h4>
+                    <img id="product-1" src="" alt="Nochiola Amaranto" style="max-width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
+                    <p style="margin: 10px 0; font-size: 0.9em; color: #666;">Churros de Amaranto Premium</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h4>Chips Vegetales</h4>
+                    <img id="product-2" src="" alt="Veggie Chips" style="max-width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
+                    <p style="margin: 10px 0; font-size: 0.9em; color: #666;">Chips de Vegetales Horneados</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h4>Cuidado Personal</h4>
+                    <img id="product-3" src="" alt="Protector Solar" style="max-width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
+                    <p style="margin: 10px 0; font-size: 0.9em; color: #666;">Fotoprotector Facial SPF50+</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h4>Amenities</h4>
+                    <img id="product-4" src="" alt="Toallitas Desmaquillantes" style="max-width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
+                    <p style="margin: 10px 0; font-size: 0.9em; color: #666;">Toallitas Desmaquillantes</p>
+                </div>
+                <div class="card" style="text-align: center;">
+                    <h4>Snacks Gourmet</h4>
+                    <img id="product-5" src="" alt="Palomitas" style="max-width: 100%; height: 200px; object-fit: contain; border-radius: 8px;">
+                    <p style="margin: 10px 0; font-size: 0.9em; color: #666;">Palomitas Gourmet Air Pop</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Siguientes Pasos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Aprobación y Firma</h3>
+                    <p>Revisión final de términos y firma del acuerdo de revenue share del 8% para PerSe Capital. Definición de ubicación exacta en lobby.</p>
+                </div>
+                <div class="card">
+                    <h3>2. Instalación y Setup</h3>
+                    <p>Instalación de máquina ESSENZA con vinil personalizado. Configuración de inventario inicial y capacitación del personal de recepción.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Lanzamiento y Optimización</h3>
+                    <p>Lanzamiento suave con promoción interna. Monitoreo de penetración y ajuste de mix de productos según demanda real de huéspedes.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Propuesta desarrollada para PerSe Capital - Asís PerSe</p>
+            <p>Contacto: Nelson Granja - Vending Solutions</p>
+        </div>
+    </div>
+
+    <script>
+        // Función para cargar una imagen con múltiples nombres posibles
+        async function loadImageWithFallback(elementId, possibleNames) {
+            for (const name of possibleNames) {
+                try {
+                    // Para deployment, usar fetch en lugar de window.fs.readFile
+                    const response = await fetch(name);
+                    if (response.ok) {
+                        const blob = await response.blob();
+                        const url = URL.createObjectURL(blob);
+                        document.getElementById(elementId).src = url;
+                        console.log(`✓ Cargada: ${name}`);
+                        return true;
+                    }
+                } catch (error) {
+                    // Continuar con el siguiente nombre
+                }
+            }
+            console.log(`✗ No se pudo cargar imagen para ${elementId}`);
+            return false;
+        }
+
+        // Cargar imágenes al cargar la página
+        window.addEventListener('load', async function() {
+            // Nombres con rutas para deployment
+            const imageNames = {
+                'vending-image': ['/images/vending.jpg', '/images/Image1.jpg', '/images/essenza.jpg'],
+                'product-1': ['/images/nochiola.jpg', '/images/Image2.jpg', '/images/amaranto.jpg'],
+                'product-2': ['/images/veggie.jpg', '/images/Image3.jpg', '/images/chips.jpg'],
+                'product-3': ['/images/protector.jpg', '/images/Image4.jpg', '/images/isdin.jpg'],
+                'product-4': ['/images/toallitas.jpg', '/images/Image5.jpg', '/images/farmasi.jpg'],
+                'product-5': ['/images/palomitas.jpg', '/images/Image6.jpg', '/images/slimpop.jpg']
+            };
+
+            // Intentar cargar cada imagen
+            for (const [elementId, names] of Object.entries(imageNames)) {
+                await loadImageWithFallback(elementId, names);
+            }
+        });
+    </script>
+</body>
+</html>
