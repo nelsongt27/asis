@@ -225,7 +225,212 @@
         .alta:hover {
             background: #e6fffa;
         }
+
+        /* Estilos mejorados para la sección de Modelo de Negocio */
+        .revenue-share-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            margin-bottom: 48px;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
         
+        .revenue-share-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            pointer-events: none;
+        }
+        
+        .revenue-share-card * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .revenue-share-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        
+        .revenue-share-card p {
+            font-size: 1.25rem;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 48px;
+        }
+        
+        .metric-card {
+            background: white;
+            border: 2px solid #f1f5f9;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .metric-card:hover {
+            transform: translateY(-4px);
+            border-color: #e2e8f0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .metric-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+        
+        .metric-description {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            font-weight: 400;
+        }
+        
+        .perse-highlight {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-color: #10b981;
+        }
+        
+        .perse-highlight .metric-value {
+            background: white;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .perse-highlight .metric-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .perse-highlight .metric-description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .perse-highlight::before {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .calculation-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 32px;
+        }
+        
+        .calculation-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .calculation-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .calc-step {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .calc-step-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .calc-step-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .arrow {
+            color: #667eea;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        
+        .final-result {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            border: none;
+        }
+        
+        .final-result .calc-step-value {
+            color: white;
+        }
+        
+        .final-result .calc-step-label {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            opacity: 0.8;
+        }
+
+        /* Resto de estilos originales */
         .highlight {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
@@ -473,6 +678,32 @@
             .footer {
                 padding: 32px 24px;
             }
+
+            /* Mobile para la nueva sección */
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .metric-card {
+                padding: 24px 16px;
+            }
+            
+            .metric-value {
+                font-size: 2.5rem;
+            }
+            
+            .revenue-share-card {
+                padding: 32px 24px;
+            }
+            
+            .calculation-flow {
+                flex-direction: column;
+            }
+            
+            .arrow {
+                transform: rotate(90deg);
+            }
         }
         
         @media print {
@@ -677,35 +908,67 @@
         <div class="section">
             <h2>Modelo de Negocio</h2>
             
-            <div class="highlight">
-                <h3>Propuesta de Revenue Share</h3>
+            <div class="revenue-share-card">
+                <h3>🤝 Propuesta de Revenue Share</h3>
                 <p>8% de utilidad neta para PerSe Capital</p>
             </div>
 
-            <div class="grid">
-                <div class="card">
-                    <h3>📈 Proyección Financiera</h3>
-                    <div class="stats">
-                        <div class="stat">
-                            <h4>$60</h4>
-                            <p>Ticket promedio</p>
-                        </div>
-                        <div class="stat">
-                            <h4>50%</h4>
-                            <p>Margen uniforme</p>
-                        </div>
-                        <div class="stat">
-                            <h4>30%</h4>
-                            <p>Penetración objetivo</p>
-                        </div>
-                    </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="icon">🎯</div>
+                    <div class="metric-value">$60</div>
+                    <div class="metric-label">Ticket Promedio</div>
+                    <div class="metric-description">Por compra</div>
                 </div>
                 
-                <div class="card">
-                    <h3>💰 Ingresos Estimados para PerSe</h3>
-                    <div style="text-align: center; padding: 20px;">
-                        <div style="font-size: 2.5rem; font-weight: 700; color: #2d3748; margin-bottom: 8px;">$800</div>
-                        <div style="font-size: 1.125rem; color: #4a5568;">por mes</div>
+                <div class="metric-card">
+                    <div class="icon">📊</div>
+                    <div class="metric-value">50%</div>
+                    <div class="metric-label">Margen Bruto</div>
+                    <div class="metric-description">Uniforme</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="icon">👥</div>
+                    <div class="metric-value">30%</div>
+                    <div class="metric-label">Penetración</div>
+                    <div class="metric-description">Objetivo</div>
+                </div>
+                
+                <div class="metric-card perse-highlight">
+                    <div class="icon">💰</div>
+                    <div class="metric-value">$800</div>
+                    <div class="metric-label">Ingresos PerSe</div>
+                    <div class="metric-description">Mensuales</div>
+                </div>
+            </div>
+
+            <div class="calculation-card">
+                <div class="calculation-title">🧮 Cálculo de Ingresos para PerSe Capital</div>
+                <div class="calculation-flow">
+                    <div class="calc-step">
+                        <div class="calc-step-value">37</div>
+                        <div class="calc-step-label">Personas/día</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="calc-step">
+                        <div class="calc-step-value">11</div>
+                        <div class="calc-step-label">Compradores/día</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="calc-step">
+                        <div class="calc-step-value">$20K</div>
+                        <div class="calc-step-label">Ventas/mes</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="calc-step">
+                        <div class="calc-step-value">$10K</div>
+                        <div class="calc-step-label">Utilidad bruta</div>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="calc-step final-result">
+                        <div class="calc-step-value">$800</div>
+                        <div class="calc-step-label">Para PerSe (8%)</div>
                     </div>
                 </div>
             </div>
